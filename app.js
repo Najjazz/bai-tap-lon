@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const apiRoute = require('./app_api/routes');
 const passport = require('passport');
+const cors = require('cors');
 
 require('./app_api/models/db');
 require('./app_api/config/passport');
@@ -26,8 +27,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 var cors = require('cors');
 
-// use it before all route definitions
-app.use(cors({origin: 'http://localhost:4200'}));
 
 app.use('/api', apiRoute);
 
