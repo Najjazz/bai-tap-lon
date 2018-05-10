@@ -3,22 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators/map';
 import { Router } from '@angular/router';
-import {TokenPayLoad} from './student';
+import { TokenPayload } from './student';
+import { TokenResponse } from './student';
 
-interface TokenResponse {
-    token: string;
-  }
-  export interface TokenPayload {
-    email: string;
-    password: string;
-  }
 @Injectable()
 export class StudentAuthenticationService {
     private token: string;
     constructor(private http: HttpClient, private router: Router) {}
 
     private saveToken(token: string): void {
-        localStorage.setItem('student-Token', token);
+        localStorage.setItem('student-token', token);
         this.token = token;
     }
 
@@ -37,11 +31,10 @@ export class StudentAuthenticationService {
 
     private request(method: 'post'|'get', type: 'login'|'register'|'profile', user?: TokenPayload): Observable<any> {
         let base;
-
         if (method === 'post') {
-          base = this.http.post(`/app_api/${type}`, user);
+          base = this.http.post(`http://localhost:3000/api/login`, {body : { mail: user.mail, password: user.password}});
         } else {
-          base = this.http.get(`/app_api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
+          base = this.http.get(`/api/${type}`, { headers: { Authorization: `Bearer ${this.getToken()}` }});
         }
         const request = base.pipe(
           map((data: TokenResponse) => {

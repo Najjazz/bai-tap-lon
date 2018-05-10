@@ -24,7 +24,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(passport.initialize());
 app.use(passport.session());
+var cors = require('cors');
 
+// use it before all route definitions
+app.use(cors({origin: 'http://localhost:4200'}));
 
 app.use('/api', apiRoute);
 

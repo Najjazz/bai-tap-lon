@@ -1,4 +1,5 @@
-export interface Student {
+
+export interface StudentInfo {
     MSSV: {type: String, required: true, unique: true};
     name: {type: String, required: true};
     birth: {type: Date, required: true};
@@ -19,20 +20,14 @@ export interface Student {
     expreneced: Number;
     wantToBe: String;
     note: String;
-
-    // skills: {type: [String], default: []};
-
-    // projects: {type: [Schema.Types.ObjectId], default: []};
-    // lecturer: {type: Schema.Types.ObjectId};
-    // notifFollow: {type: [Schema.Types.ObjectId], default: []};
 }
 
-interface TokenResponse {
+
+export interface TokenResponse {
     token: string;
-    message: string;
 }
-
-export interface TokenPayLoad {
-    email: string;
+// Retrieve only the username and password of student
+export interface TokenPayload {
+    mail: string;
     password: string;
 }

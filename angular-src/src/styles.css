@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  background-image: url("./app/login/img/bg2.png");
+  background-repeat: no-repeat fixed;
+  background-size: cover;
+  width: 100vh;
+  height: 100vh;
+  filter: drop-shadow(8px 8px 8px black);
+  height: 100%;
+  width: 100%;
+  padding-top: 5%;
+}
+
